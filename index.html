@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог книг</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background: #f3f3f3;
+            cursor: pointer;
+        }
+        
+        th:hover {
+            background: #e9e9e9;
+        }
+        
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+        }
+        
+        .search {
+            width: 300px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin: 10px 0;
+        }
+        
+        .form-group label {
+            display: inline-block;
+            width: 100px;
+        }
+        
+        .form-group input {
+            padding: 6px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Каталог книг</h1>
+    
+    <div class="controls">
+        <button id="reload">Загрузить книги</button>
+        <button id="export">Экспорт JSON</button>
+        <button id="clear-all">Очистить всё</button>
+        
+        <br>
+        <input type="text" id="search" class="search" placeholder="Поиск по названию или автору...">
+        
+        <p>Всего книг: <span id="total-count">0</span> | Отображается: <span id="count">0</span></p>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th data-sort="title">Название</th>
+                <th data-sort="author">Автор</th>
+                <th data-sort="genre">Жанр</th>
+                <th data-sort="year">Год</th>
+                <th data-sort="rating">Рейтинг</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Книги будут здесь -->
+        </tbody>
+    </table>
+    
+    <h2>Добавить / Редактировать книгу</h2>
+    <form id="book-form">
+        <input type="hidden" id="book-id">
+        
+        <div class="form-group">
+            <label for="title">Название:</label>
+            <input type="text" id="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="author">Автор:</label>
+            <input type="text" id="author" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="genre">Жанр:</label>
+            <input type="text" id="genre">
+        </div>
+        
+        <div class="form-group">
+            <label for="year">Год:</label>
+            <input type="number" id="year">
+        </div>
+        
+        <div class="form-group">
+            <label for="rating">Рейтинг:</label>
+            <input type="number" id="rating" step="0.1" min="0" max="5">
+        </div>
+        
+        <button type="submit">Сохранить</button>
+        <button type="button" id="cancel">Отмена</button>
+    </form>
+    
+    <script src="scripts/bookGenerator.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
