@@ -1,12 +1,8 @@
-// Жанры книг
-const SUBJECTS = ["fantasy", "science", "history", "biography", "romance", "mystery"];
 
-// Случайный элемент массива
+const SUBJECTS = ["fantasy", "science", "history", "biography", "romance", "mystery"];
 function randomItem(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
-
-// Основная функция для генерации книг
 async function generateBooks(count = 10) {
     try {
         const subject = randomItem(SUBJECTS);
@@ -20,8 +16,6 @@ async function generateBooks(count = 10) {
         if (!data.works || !Array.isArray(data.works)) {
             throw new Error('Нет данных о книгах');
         }
-        
-        // Преобразуем данные
         const books = data.works
             .filter(book => book.title && book.authors?.length)
             .slice(0, count)
